@@ -1,0 +1,29 @@
+Objetivo:
+- Implementar uma API Rest simples em JS com autenticação JWT, separando o Controller, Service, Model e Routes.
+- Para acessar o cadastros de animais de estimação com suas características.
+
+Regras:
+- Primeiro leia a estrutura de pasta que o projeto já fora criada;
+- Login/senha obrigatórios, não permitir usuários duplicados, uso de JWT, banco em arquivo json;
+- Os dados dos animais são:
+	- Placa de identificação;
+	- Nome do animal;
+	- Tipo de animal(sugiro algo melhor);
+	- Os tipos são: cães, gatos, peixes, pássaros, roedores, répteis e alguns exóticos
+	- data de nascimento do animal;
+	- Vacinas do animal;
+	- Email do dono;
+	- Senha
+	- Cada dono só pode ter acesso ao seu animal, não pode acessar o de outro
+	- email e placa de identificação são únicos
+- Separação de arquivos: app.js, server.js, middleware (para a implementação do JWT);
+- Os arquivos do controller ficam em sua respectiva pasta;
+- Os arquivos da routes ficam em sua respectiva pasta;
+- Os arquivos do models ficam em sua respectiva pasta;
+- Os arquivos do services ficam em sua respectiva pasta;
+- As pastas: controllers, routes e os arquivos: app.js, server.js e swagger.js dentro da pasta rest;
+- As pastas: models, services dentro da pasta src;
+- Documentação Swagger e endpoint para renderização;
+- 2 testes automatizados isolando Controller do Service;
+- 2 com a aplicação rodando;
+- Utilizar Sinon, Mocha, SuperTest, Chai.
