@@ -14,6 +14,12 @@ describe('API external Tests', () => {
 
     // Limpa os bancos de dados antes de começar os testes
     before((done) => {
+        // Garante que o diretório de dados exista antes de escrever os arquivos
+        const dataDir = path.dirname(userDbPath);
+        if (!fs.existsSync(dataDir)) {
+            fs.mkdirSync(dataDir, { recursive: true });
+        }
+
         fs.writeFileSync(userDbPath, '[]', 'utf8');
         fs.writeFileSync(petDbPath, '[]', 'utf8');
 
