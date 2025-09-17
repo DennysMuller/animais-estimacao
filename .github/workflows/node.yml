@@ -23,7 +23,7 @@ jobs:
       run: npm install
 
     - name: ▶️ Subir a API Rest
-      run: npm run start-rest &
+      run: npm run start &
 
     - name: ⏳ Esperar as APIs estarem funcionando
       run: sleep 4  # segundos
