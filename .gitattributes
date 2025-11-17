@@ -18,7 +18,8 @@
 
 # Força todos os arquivos de texto a usarem a terminação de linha CRLF (padrão Windows).
 # Isso evita avisos de conversão de LF para CRLF.
-* text eol=crlf
+#* text eol=crlf
+* text=auto
 
 # Marca explicitamente os arquivos de imagem como binários para que o Git não os modifique
 *.png     binary
