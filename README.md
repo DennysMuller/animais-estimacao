@@ -19,6 +19,28 @@ Uma API RESTful simples, construída com Node.js e Express, para gerenciar anima
 ## 📂 Estrutura do Projeto
 
 ```
+````markdown
+# PetStore API
+
+Uma API RESTful simples, construída com Node.js e Express, para gerenciar animais de estimação. A API utiliza autenticação baseada em JSON Web Tokens (JWT) e armazena os dados em arquivos JSON locais, seguindo uma arquitetura de software bem definida com separação de responsabilidades (Controllers, Services, Models).
+
+## ✨ Funcionalidades
+
+-   **Autenticação de Usuários**: Sistema completo de registro e login com JWT.
+-   **Segurança**: Senhas armazenadas com hash (usando `bcryptjs`).
+-   **Gerenciamento de Pets (CRUD)**:
+    -   Cadastrar novos pets.
+    -   Listar todos os pets de um usuário autenticado.
+    -   Buscar um pet específico por sua placa de identificação.
+    -   Atualizar informações de um pet.
+    -   Remover um pet.
+-   **Regras de Negócio**: Um usuário só pode visualizar e gerenciar seus próprios pets.
+-   **Documentação Interativa**: Documentação completa e testável com Swagger (OpenAPI).
+-   **Testes Automatizados**: Testes de unidade e de ponta a ponta (E2E) utilizando Mocha, Chai, Sinon e SuperTest.
+
+## 📂 Estrutura do Projeto
+
+```
 .
 ├── .gitignore
 ├── package.json
@@ -119,3 +141,60 @@ npm test
 -   **Testes**: Mocha, Chai, SuperTest, Sinon
 -   **Documentação**: Swagger (swagger-jsdoc, swagger-ui-express)
 -   **Utilitários**: Nodemon
+
+## **Performance Test (k6)**
+
+- **Propósito**: Testar o desempenho dos endpoints de autenticação e criação de pets usando um script k6 localizado em `test/k6/api-auth-performance-test.js`.
+- **O que o script faz**: registra um usuário, realiza login para obter um token JWT e, em seguida, cria um pet usando esse token. Gera dados dinâmicos (nome do pet, espécie, idTag e data de nascimento) para cada execução.
+
+**Arquivo principal do teste**: `test/k6/api-auth-performance-test.js`
+
+**Observação importante sobre dados dinâmicos**: o script utiliza `xk6-faker` para gerar nomes e espécies de animais. Para que o import `k6/x/faker` funcione é necessário usar um binário do `k6` compilado com a extensão `xk6-faker`.
+
+## **xk6-faker (extensão necessária)**
+
+- **Requisitos**: `Go` instalado e `xk6` disponível no seu ambiente de desenvolvimento.
+- **Como compilar um k6 com a extensão `xk6-faker` (exemplo)**:
+
+```powershell
+# Instale xk6 (apenas se ainda não tiver)
+go install github.com/grafana/xk6/cmd/xk6@latest
+
+# Compile o k6 com a extensão xk6-faker e gere um executável (Windows)
+xk6 build --with github.com/grafana/xk6-faker@latest -o k6.exe
+```
+
+- Depois de gerar o `k6.exe`, use esse executável para rodar os scripts que importam `k6/x/faker`.
+
+## **Web Dashboard (k6) — Windows PowerShell**
+
+- **O que é**: o Web Dashboard fornece uma interface visual em tempo real para observar métricas do teste enquanto o k6 está rodando. É possível também exportar os dados para um arquivo HTML.
+- **Variáveis de ambiente úteis (PowerShell)**:
+
+```powershell
+$env:K6_WEB_DASHBOARD = "true"
+$env:K6_WEB_DASHBOARD_EXPORT = "html-dashboard.html"
+$env:K6_WEB_DASHBOARD_PERIOD = "2s"
+```
+
+- **Exemplo de execução (PowerShell)** — assume que você tem `k6.exe` (compilado com as extensões necessárias ou o k6 oficial conforme seu uso):
+
+```powershell
+# $env:K6_WEB_DASHBOARD = "true"; $env:K6_WEB_DASHBOARD_EXPORT = "html-dashboard.html"; $env:K6_WEB_DASHBOARD_PERIOD = "2s"; k6.exe run .\test\k6\api-auth-performance-test.js
+```
+
+- **Observações**:
+  - Se estiver usando o `k6` instalado via pacote padrão (sem `xk6`), o dashboard pode não suportar algumas extensões; ainda assim as métricas básicas estarão disponíveis.
+  - A opção `K6_WEB_DASHBOARD_EXPORT` cria um arquivo HTML com o dashboard ao final do teste (útil para compartilhamento).
+  - `K6_WEB_DASHBOARD_PERIOD` controla a frequência (ex.: `2s`) com que o dashboard atualiza os dados.
+
+## **Dicas rápidas**
+
+- **Execução local rápida** (sem xk6-faker): se você não precisa das funções do faker, com o `k6` padrão instale e rode o script normalmente:
+
+```powershell
+# Com k6 instalado no PATH
+k6 run .\test\k6\api-auth-performance-test.js
+```
+
+- **Semente (seed) para resultados determinísticos**: se quiser resultados repetíveis, instancie o faker com seed em `api-auth-performance-test.js`: `const faker = new Faker(1234)`.
