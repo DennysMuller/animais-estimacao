@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: '20.x'
 
-     - name: 📝 Instalar o k6
+    - name: 📝 Instalar o k6
       uses: grafana/k6-action@v0.3.0
       with:
         k6-version: '1.4.0'
