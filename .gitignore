@@ -1,7 +1,3 @@
 node_modules/
 npm-debug.log
-data/*.json
-*.html
-*.htm
 .env
-.txt
