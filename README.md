@@ -2,7 +2,7 @@
 
 Uma API RESTful simples, construída com Node.js e Express, para gerenciar animais de estimação. A API utiliza autenticação baseada em JSON Web Tokens (JWT) e armazena os dados em arquivos JSON locais, seguindo uma arquitetura de software bem definida com separação de responsabilidades (Controllers, Services, Models).
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 -   **Autenticação de Usuários**: Sistema completo de registro e login com JWT.
 -   **Segurança**: Senhas armazenadas com hash (usando `bcryptjs`).
@@ -16,7 +16,7 @@ Uma API RESTful simples, construída com Node.js e Express, para gerenciar anima
 -   **Documentação Interativa**: Documentação completa e testável com Swagger (OpenAPI).
 -   **Testes Automatizados**: Testes de unidade e de ponta a ponta (E2E) utilizando Mocha, Chai, Sinon e SuperTest.
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 ````markdown
@@ -24,7 +24,7 @@ Uma API RESTful simples, construída com Node.js e Express, para gerenciar anima
 
 Uma API RESTful simples, construída com Node.js e Express, para gerenciar animais de estimação. A API utiliza autenticação baseada em JSON Web Tokens (JWT) e armazena os dados em arquivos JSON locais, seguindo uma arquitetura de software bem definida com separação de responsabilidades (Controllers, Services, Models).
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 -   **Autenticação de Usuários**: Sistema completo de registro e login com JWT.
 -   **Segurança**: Senhas armazenadas com hash (usando `bcryptjs`).
@@ -38,10 +38,10 @@ Uma API RESTful simples, construída com Node.js e Express, para gerenciar anima
 -   **Documentação Interativa**: Documentação completa e testável com Swagger (OpenAPI).
 -   **Testes Automatizados**: Testes de unidade e de ponta a ponta (E2E) utilizando Mocha, Chai, Sinon e SuperTest.
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
-.
+```
 ├── .gitignore
 ├── package.json
 ├── data/
@@ -71,12 +71,12 @@ Uma API RESTful simples, construída com Node.js e Express, para gerenciar anima
     └── e2e.test.js
 ```
 
-## 🚀 Pré-requisitos
+## Pré-requisitos
 
 -   Node.js (versão 14 ou superior)
 -   npm (geralmente instalado com o Node.js)
 
-## ⚙️ Instalação
+## Instalação
 
 1.  Clone o repositório para sua máquina local:
     ```bash
@@ -89,7 +89,7 @@ Uma API RESTful simples, construída com Node.js e Express, para gerenciar anima
     npm install
     ```
 
-## 🏃‍♀️ Executando a Aplicação
+## Executando a Aplicação
 
 ### Modo de Desenvolvimento
 
@@ -109,7 +109,7 @@ npm start
 
 Após iniciar, a API estará disponível em `http://localhost:3000`.
 
-## 📚 Uso da API e Documentação
+## Uso da API e Documentação
 
 A documentação completa e interativa da API está disponível através do Swagger UI. Acesse o seguinte endereço no seu navegador:
 
@@ -126,7 +126,7 @@ Para acessar os endpoints protegidos (todos os de `/pets`), você precisa primei
     -   Cole o token recebido no campo "Value" e clique em "Authorize".
     -   Agora você pode testar todos os endpoints protegidos diretamente pela documentação.
 
-## 🧪 Executando os Testes
+## Executando os Testes
 
 Para rodar a suíte de testes automatizados (unidade e E2E), execute o comando:
 
@@ -134,7 +134,7 @@ Para rodar a suíte de testes automatizados (unidade e E2E), execute o comando:
 npm test
 ```
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 -   **Backend**: Node.js, Express.js
 -   **Autenticação**: JSON Web Token (JWT), bcryptjs
