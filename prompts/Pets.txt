@@ -1,12 +1,12 @@
 Objetivo:
-Crie um teste de performance com K6 para registrar um usuário novo usuário, fazer login dele, cadastrar um novo pet e listar todos os pets do usuário autenticado.
+Crie um teste de performance com K6 para registrar um novo usuário, fazer login dele, cadastrar um novo pet e listar todos os pets do usuário autenticado.
 
 Contexto:
 - O k6 já está instalado na minha máquina.
 - O teste a ser criado é apenas para o fluxo principal (não preciso de fluxo alternativo ou de exceção).
 - Para registrar, olhe o rest/swagger.yaml e pesquise como funciona o POST /auth/register. Emails devem ser únicos.
 - Para logar, olhe o rest/swagger.yaml e pesquise como funciona o POST /auth/login.
-- Para fazer o cadastro do pet, olhe o rest/swagger.yaml e pesquise como funciona o POST /pets. Esse endpoint precisa de um token Bearer JWT que pode ser extraido do POST /auth/register na propriedade data.token. No cadastra um novo pet, use o idTag "XYZ-1234" com name "Rex", species "Cão", birthDate "2020-01-15" e vaccines como uma lista ["Raiva",
+- Para fazer o cadastro do pet, olhe o rest/swagger.yaml e pesquise como funciona o POST /pets. Esse endpoint precisa de um token Bearer JWT que pode ser extraido do POST /auth/register na propriedade token. No cadastra um novo pet, use o idTag "XYZ-1234" com name "Rex", species "Cão", birthDate "2020-01-15" e vaccines como uma lista ["Raiva",
     "V10"].
 - O teste de performance passa quando o percentil de 95 é menor que 2 segundos (crie um threshold para http_req_duration que represente essa regra). 
 - Esse teste deve rodar para 10 usuários virtuais com 15 segundos de duração.
