@@ -41,7 +41,7 @@ Uma API RESTful simples, construída com Node.js e Express, para gerenciar anima
 ## 📂 Estrutura do Projeto
 
 ```
-.
+```
 ├── .gitignore
 ├── package.json
 ├── data/
