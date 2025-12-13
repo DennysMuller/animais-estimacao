@@ -40,6 +40,7 @@ jobs:
     - name: Criar no Github Actions o arquivo .env
       run: |
         echo "BASE_URL_REST = ${{ secrets.BASE_URL_REST }}" >> .env
+
     - name: Executar testes External e Controller de API Rest via HTTP
       run: npm run test
     
@@ -49,22 +50,30 @@ jobs:
         K6_WEB_DASHBOARD_EXPORT: "trabalho-final-da-disciplina.test.html"
       with:
         path: test/k6/trabalho-final-da-disciplina.test.js
+        cloud-run-locally: false
+        cloud-comment-on-pr: true        
         #flags: --env BASE_URL=http://localhost:3000
     
-    - name: Executar o k6 - Login
+    - name: Executar o k6 - Login com Data-Driven Testing
       uses: grafana/run-k6-action@v1
       env:
         K6_WEB_DASHBOARD_EXPORT: "login.test-dashboard.html"
       with:
         path: test/k6/login.test.js
+        cloud-run-locally: false
+        cloud-comment-on-pr: true
         #flags: --env BASE_URL=http://localhost:3000
 
+    - name: Outra maneira de executar
+      run: |
+        echo "Outra maneira de executar, apresenta detalhes da evolução e execução !!!"
+      
     - name: Executar teste de performance k6 - Trabalho final da disciplina
       env:
         K6_WEB_DASHBOARD_EXPORT: "trabalho-final-da-disciplina.test-dashboard.html"
       run: k6 run test/k6/trabalho-final-da-disciplina.test.js --env BASE_URL=http://localhost:3000
 
-    - name: Executar teste de performance k6 - Login
+    - name: Executar teste de performance k6 - Login com Data-Driven Testing
       env:
         K6_WEB_DASHBOARD_EXPORT: "login.test-dashboard.html"
       run: k6 run test/k6/login.test.js --env BASE_URL=http://localhost:3000
