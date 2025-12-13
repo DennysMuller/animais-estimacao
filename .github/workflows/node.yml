@@ -34,19 +34,18 @@ jobs:
     - name: Criar no Github Actions o arquivo .env
       run: |
         echo "BASE_URL_REST = ${{ secrets.BASE_URL_REST }}" >> .env
-
     - name: Executar testes External e Controller de API Rest via HTTP
       run: npm run test
     
     - name: Executar o k6 - Trabalho final da disciplina
       uses: grafana/run-k6-action@v1
       with:
-        path: test/k6/trabalho-final-da-disciplina.test.js --env BASE_URL=http://localhost:3000
+        path: test/k6/trabalho-final-da-disciplina.test.js
     
     - name: Executar o k6 - Login
       uses: grafana/run-k6-action@v1
       with:
-        path: test/k6/login.test.js --env BASE_URL=http://localhost:3000
+        path: test/k6/login.test.js
 
     - name: Executar teste de performance k6 - Trabalho final da disciplina
       env:
