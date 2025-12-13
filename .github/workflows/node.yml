@@ -39,15 +39,15 @@ jobs:
     - name: Executar testes External e Controller de API Rest via HTTP
       run: npm run test
     
-    - name: Executar o k6 - Trabalho final da disciplina
-      uses: grafana/run-k6-action@v1
-      with:
-        path: test/k6/trabalho-final-da-disciplina.test.js
-    
-    - name: Executar o k6 - Login
-      uses: grafana/run-k6-action@v1
-      with:
-        path: test/k6/login.test.js
+   #- name: Executar o k6 - Trabalho final da disciplina
+   #  uses: grafana/run-k6-action@v1
+   #  with:
+   #    path: test/k6/trabalho-final-da-disciplina.test.js
+   #
+   #- name: Executar o k6 - Login
+   #  uses: grafana/run-k6-action@v1
+   #  with:
+   #    path: test/k6/login.test.js
 
     - name: Executar teste de performance k6 - Trabalho final da disciplina
       env:
