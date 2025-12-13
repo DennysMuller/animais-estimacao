@@ -9,7 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Os ícones baixei do sítio: https://github.com/ikatyang/emoji-cheat-sheet.git
+    env:
+      BASE_URL: "http://localhost:3000"
+      K6_WEB_DASHBOARD: "true"
+      K6_WEB_DASHBOARD_PERIOD: "2s"
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -39,29 +43,30 @@ jobs:
     - name: Executar testes External e Controller de API Rest via HTTP
       run: npm run test
     
-   #- name: Executar o k6 - Trabalho final da disciplina
-   #  uses: grafana/run-k6-action@v1
-   #  with:
-   #    path: test/k6/trabalho-final-da-disciplina.test.js
-   #
+    - name: Executar o k6 - Trabalho final da disciplina
+      uses: grafana/run-k6-action@v1
+      env:
+        K6_WEB_DASHBOARD_EXPORT: "trabalho-final-da-disciplina.test.html"
+      with:
+        path: test/k6/trabalho-final-da-disciplina.test.js
+        #flags: --env BASE_URL=http://localhost:3000
+    
     - name: Executar o k6 - Login
       uses: grafana/run-k6-action@v1
+      env:
+        K6_WEB_DASHBOARD_EXPORT: "login.test-dashboard.html"
       with:
         path: test/k6/login.test.js
-        flags: --env BASE_URL=http://localhost:3000
+        #flags: --env BASE_URL=http://localhost:3000
 
     - name: Executar teste de performance k6 - Trabalho final da disciplina
       env:
-        K6_WEB_DASHBOARD: "true"
         K6_WEB_DASHBOARD_EXPORT: "trabalho-final-da-disciplina.test-dashboard.html"
-        K6_WEB_DASHBOARD_PERIOD: "2s"
       run: k6 run test/k6/trabalho-final-da-disciplina.test.js --env BASE_URL=http://localhost:3000
 
     - name: Executar teste de performance k6 - Login
       env:
-        K6_WEB_DASHBOARD: "true"
-        K6_WEB_DASHBOARD_EXPORT: login.test-dashboard.html"
-        K6_WEB_DASHBOARD_PERIOD: "2s"
+        K6_WEB_DASHBOARD_EXPORT: "login.test-dashboard.html"
       run: k6 run test/k6/login.test.js --env BASE_URL=http://localhost:3000
 
     - name: Upload dos relatórios de testes em html do k6
