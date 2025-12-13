@@ -24,6 +24,8 @@ jobs:
 
     - name: Instalar o k6
       uses: grafana/setup-k6-action@v1
+      with:
+        browser: true
 
     - name: Subir a API Rest
       run: npm run start &
@@ -46,6 +48,7 @@ jobs:
         K6_WEB_DASHBOARD_PERIOD: "2s"
       with:
         path: test/k6/trabalho-final-da-disciplina.test.js --env BASE_URL=http://localhost:3000
+        cloud-run-locally: false
     
     - name: Executar o k6 - Login
       uses: grafana/run-k6-action@v1
@@ -55,6 +58,7 @@ jobs:
         K6_WEB_DASHBOARD_PERIOD: "2s"
       with:
         path: test/k6/login.test.js --env BASE_URL=http://localhost:3000
+        cloud-run-locally: false
 
     - name: Upload dos relatórios de testes em html do k6
       uses: actions/upload-artifact@v4
