@@ -2,11 +2,10 @@
 import http from 'k6/http';
 import { SharedArray } from 'k6/data';
 import { check, sleep } from 'k6';
-import { getBaseUrl } from './helpers/baseUrlHelper.js';
 
 const users = new SharedArray ('users', function () {
     return JSON.parse(open('./data/login.test.data.json'));
-})
+});
 
 export let options = {
     // vus: 10,
@@ -34,7 +33,7 @@ export default function() {
     const password = user.password;
 
     const res = http.post(
-        `${getBaseUrl()}/auth/login`,
+        `${__ENV.BASE_URL}/auth/login`,
         JSON.stringify({
             email,
             password 

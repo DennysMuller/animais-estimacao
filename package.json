@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node rest/server.js",
     "dev": "nodemon rest/server.js",
-    "test": "mocha --exit --recursive test/**/*.js"
+    "test": "mocha --exit --recursive \"test/**/*.js\" --ignore \"test/k6/**/*.js\""
   },
   "keywords": [
     "api",

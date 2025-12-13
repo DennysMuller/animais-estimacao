@@ -1,35 +1,8 @@
 [
   {
-    "idTag": "8-0-1763500277839-60812",
-    "name": "Sarah Jessica Barker",
-    "species": "gnat",
-    "birthDate": "23/07/2024",
-    "vaccines": [
-      "Raiva",
-      "V10"
-    ],
-    "ownerEmail": "judgespencer@morissette.net"
-  },
-  {
-    "idTag": "9-0-1763500277839-46110",
-    "name": "Tank",
-    "species": "hound",
-    "birthDate": "27/12/2022",
-    "vaccines": [
-      "Raiva",
-      "V10"
-    ],
-    "ownerEmail": "judgespencer@morissette.net"
-  },
-  {
-    "idTag": "3-0-1763500277839-83687",
-    "name": "Larry",
-    "species": "yak",
-    "birthDate": "22/09/2023",
-    "vaccines": [
-      "Raiva",
-      "V10"
-    ],
-    "ownerEmail": "judgespencer@morissette.net"
+    "idTag": "external-001",
+    "name": "Fido",
+    "species": "cão",
+    "ownerEmail": "external@test.com"
   }
 ]
