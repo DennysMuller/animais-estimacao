@@ -24,6 +24,8 @@ jobs:
 
     - name: Instalar o k6
       uses: grafana/setup-k6-action@v1
+      with:
+          browser: true
 
     - name: Subir a API Rest
       run: npm run start &
