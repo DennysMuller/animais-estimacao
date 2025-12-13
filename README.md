@@ -352,6 +352,31 @@ Os arquivos de testes são:
         };
     ```
 
+# Integração Contínua (CI) — GitHub Actions
+
+Este projeto utiliza o **GitHub Actions** para automação de testes, build e geração de relatórios de performance. O workflow principal está definido em `.github/workflows/node.yml` e executa automaticamente nas branches `main` para push e pull request.
+
+### Principais etapas do workflow:
+
+- **Checkout do código:** Baixa o repositório para o runner.
+- **Configuração do Node.js:** Usa Node.js 20.x para garantir ambiente consistente.
+- **Instalação de dependências:** Executa `npm install` para instalar todas as dependências do projeto.
+- **Instalação do k6:** Instala o k6 para testes de performance.
+- **Subida da API:** Executa o servidor da API em background.
+- **Execução dos testes automatizados:** Roda os testes de unidade e integração com `npm test`.
+- **Testes de performance (k6):**
+    - Executa os scripts de performance localmente e via ação do k6, gerando dashboards HTML.
+    - Usa variáveis de ambiente para configurar o dashboard e exportar relatórios.
+- **Upload de relatórios:** Os arquivos HTML gerados pelos testes de performance são enviados como artefatos do workflow.
+
+#### Exemplo de artefatos gerados:
+- `trabalho-final-da-disciplina.test-dashboard.html`
+- `login.test-dashboard.html`
+
+Esses relatórios podem ser baixados diretamente na interface do GitHub Actions após a execução do workflow.
+- Na seção: **Upload dos relatórios de testes em html do k6**
+  - Artifact download URL
+
 ## Dicas rápidas
 
 - **data\users.json** caso perca os usuários da base de dados, aqui estão os usuários salvos e podem ser usados para testes:
