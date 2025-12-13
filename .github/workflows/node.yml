@@ -39,20 +39,20 @@ jobs:
       run: npm run test
     
     - name: Executar o k6 - Trabalho final da disciplina
+      uses: grafana/run-k6-action@v1
       env:
         K6_WEB_DASHBOARD: "true"
         K6_WEB_DASHBOARD_EXPORT: "trabalho-final-da-disciplina.test-dashboard.html"
         K6_WEB_DASHBOARD_PERIOD: "2s"
-      uses: grafana/run-k6-action@v1
       with:
         path: test/k6/trabalho-final-da-disciplina.test.js --env BASE_URL=http://localhost:3000
     
     - name: Executar o k6 - Login
+      uses: grafana/run-k6-action@v1
       env:
         K6_WEB_DASHBOARD: "true"
         K6_WEB_DASHBOARD_EXPORT: login.test-dashboard.html"
         K6_WEB_DASHBOARD_PERIOD: "2s"
-      uses: grafana/run-k6-action@v1
       with:
         path: test/k6/login.test.js --env BASE_URL=http://localhost:3000
 
