@@ -3,34 +3,62 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  #pull_request:
-    #branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     # Os ícones baixei do sítio: https://github.com/ikatyang/emoji-cheat-sheet.git
     steps:
-    - name: ✅ Checkout repository
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: 📝 Use Node.js 20.x
+    - name: Use Node.js 20.x
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
 
-    - name: ⚙️ Instalar dependências
+    - name: Instalar dependências
       run: npm install
 
-    - name: ▶️ Subir a API Rest
+    - name: Instalar o k6
+      run: sudo apt-get update && sudo apt-get install -y gnupg software-properties-common && \
+           wget -q -O - https://packages.k6.io/key.gpg | sudo apt-key add - && \
+           echo "deb https://packages.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list && \
+           sudo apt-get update && sudo apt-get install -y k6
+
+    - name: Subir a API Rest
       run: npm run start &
 
-    - name: ⏳ Esperar as APIs estarem funcionando
+    - name: Esperar as APIs estarem funcionando
       run: sleep 4  # segundos
 
     - name: Criar no Github Actions o arquivo .env
       run: |
         echo "BASE_URL_REST = ${{ secrets.BASE_URL_REST }}" >> .env
 
-    - name: 🧪 Executar testes External e Controller de API Rest via HTTP
+    - name: Executar testes External e Controller de API Rest via HTTP
       run: npm run test
+    
+    - name: Executar teste de performance k6 - Trabalho final da disciplina
+      env:
+        K6_WEB_DASHBOARD: "true"
+        K6_WEB_DASHBOARD_EXPORT: "trabalho-final-da-disciplina.test-dashboard.html"
+        K6_WEB_DASHBOARD_PERIOD: "2s"
+      run: k6 run test/k6/trabalho-final-da-disciplina.test.js --env BASE_URL=http://localhost:3000
+
+    - name: Executar teste de performance k6 - Login
+      env:
+        K6_WEB_DASHBOARD: "true"
+        K6_WEB_DASHBOARD_EXPORT: login.test-dashboard.html"
+        K6_WEB_DASHBOARD_PERIOD: "2s"
+      run: k6 run test/k6/login.test.js --env BASE_URL=http://localhost:3000
+
+    - name: Upload dos relatórios de testes em html do k6
+      uses: actions/upload-artifact@v4
+      with:
+        name: relatorios-k6
+        path: |
+          trabalho-final-da-disciplina.test-dashboard.html
+          login.test-dashboard.html
