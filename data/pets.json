@@ -1,0 +1,8 @@
+[
+  {
+    "idTag": "external-001",
+    "name": "Fido",
+    "species": "cão",
+    "ownerEmail": "external@test.com"
+  }
+]

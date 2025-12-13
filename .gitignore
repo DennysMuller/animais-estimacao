@@ -1,7 +1,9 @@
-node_modules/
+/node_modules
+# preciso da pasta para reaproveitar os 3 emails salvos
+# judgespencer@morissette.net = senha123
+# jverdazieme@baumbach.biz    = senha456
+# nelswehner@sipes.net        = senha789
+# /data
 npm-debug.log
-data/*.json
-*.html
-*.htm
 .env
-.txt
+*.7z

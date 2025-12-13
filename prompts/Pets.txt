@@ -1,0 +1,28 @@
+Objetivo:
+Crie um teste de performance com K6 para registrar um novo usuário, fazer login dele, cadastrar um novo pet e listar todos os pets do usuário autenticado.
+
+Contexto:
+- O k6 já está instalado na minha máquina.
+- O teste a ser criado é apenas para o fluxo principal (não preciso de fluxo alternativo ou de exceção).
+- Para registrar, olhe o rest/swagger.yaml e pesquise como funciona o POST /auth/register. Emails devem ser únicos.
+- Para logar, olhe o rest/swagger.yaml e pesquise como funciona o POST /auth/login.
+- Para fazer o cadastro do pet, olhe o rest/swagger.yaml e pesquise como funciona o POST /pets. Esse endpoint precisa de um token Bearer JWT que pode ser extraido do POST /auth/register na propriedade token. No cadastra um novo pet, use o idTag "XYZ-1234" com name "Rex", species "Cão", birthDate "2020-01-15" e vaccines como uma lista ["Raiva",
+    "V10"].
+- O teste de performance passa quando o percentil de 95 é menor que 2 segundos (crie um threshold para http_req_duration que represente essa regra). 
+- Esse teste deve rodar para 10 usuários virtuais com 15 segundos de duração.
+
+Regras:
+- Salve o teste dentro da pasta test/k6/trabalho-final-da-disciplina.test.js
+- Crie check do status code de sucesso contido na resposta de cada request que você fizer.
+- Separe ações similares em groups.
+- Crie uma pasta helpers dentro do diretório test/k6 para armazenar funções comuns que poderão ser reaproveitadas em outros testes (ex. login). 
+- Crie uma função helper para geração de emails aleatórios. A senha sempre será "senha123"
+- Crie uma função helper para geração de idTag aleatórios.
+- Crie uma função helper para geração de name aleatórios para os pets.
+- Crie uma função helper para geração de species aleatórias para as espécies dos pets.
+- Crie uma função helper para geração de birthDate aleatórias para as datas de nacimentos dos pets.
+- Crie uma função helper para geração de vaccines aleatórias para as vacinas dos pets.
+- Sugestão da geração aleatória utilizar o "__VU" e o "__ITER" do k6.
+- Crie uma variavel de ambiente BASE_URL para substituir base url atual, esse valor sera passado por linha de comando. Crie uma função de obtenção do base URL e armazene em um helper com o mesmo nome da função.
+- Crie uma Trend (importando de k6/metrics) para monitorar o tempo de duração das requests feitas para POST /pets.
+- Execute os testes depois de criar e analise se o percentil do tempo de resposta atende aos requisitos e me avise quanto a checks que porventura tenham falhado.
